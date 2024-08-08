@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Items - Inventory App</title>
+    <link rel="stylesheet" href="../styles/item.css">
+</head>
+<body>
+    <header>
+        <h1>Inventory App</h1>
+        <nav>
+            <ul>
+                <li><a href="/">Home</a></li>
+                <li><a href="/items">Items</a></li>
+                <li><a href="/orders">Orders</a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <section class="items">
+            <h2>Items List</h2>
+            <table>
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Name</th>
+                        <th>Description</th>
+                        <th>Quantity</th>
+                        
+                    </tr>
+                </thead>
+                <tbody>
+                    <% items.forEach(item => { %>
+                        <tr>
+                            <td><%= item.id %></td>
+                            <td><%= item.name %></td>
+                            <td><%= item.description %></td>
+                            <td><%= item.quantity %></td>
+                            <td>
+                                <form action="/items/add" method="POST">
+                                    <input type="hidden" name="id" value="<%= item.id %>">
+                                    <input type="hidden" name="name" value="<%= item.name %>">
+                                    <input type="hidden" name="description" value="<%= item.description %>">
+                                    <input type="hidden" name="quantity" value="<%= item.quantity %>">
+                                    <button type="submit">Add</button>
+                                </form>
+                            </td>
+                        </tr>
+                    <% }) %>
+                </tbody>
+            </table>
+        </section>
+    </main>
+</body>
+</html>
